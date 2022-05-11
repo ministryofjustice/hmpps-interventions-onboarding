@@ -4,12 +4,15 @@ orbs:
   hmpps: ministryofjustice/hmpps@3.14
 
 parameters:
-  alerts-slack-channel:
+  dev-alerts-slack-channel:
     type: string
-    default: dps_alerts_security
+    default: interventions-dev-notifications
+  dev-releases-slack-channel:
+    type: string
+    default: interventions-dev-notifications
   releases-slack-channel:
     type: string
-    default: dps-releases
+    default: interventions
 
 jobs:
   validate:
@@ -37,10 +40,7 @@ workflows:
   version: 2
   build-test-and-deploy:
     jobs:
-      - validate:
-          filters:
-            tags:
-              ignore: /.*/
+      - validate
       - hmpps/helm_lint:
           name: helm_lint
       - hmpps/build_docker:
@@ -61,32 +61,30 @@ workflows:
             - validate
             - build_docker
             - helm_lint
-#      - request-preprod-approval:
-#          type: approval
-#          requires:
-#            - deploy_dev
-#      - hmpps/deploy_env:
-#          name: deploy_preprod
-#          env: "preprod"
-#          context:
-#            - hmpps-common-vars
-#            - hmpps-interventions-onboarding-preprod
-#          requires:
-#            - request-preprod-approval
-#      - request-prod-approval:
-#          type: approval
-#          requires:
-#            - deploy_preprod
-#      - hmpps/deploy_env:
-#          name: deploy_prod
-#          env: "prod"
-#          slack_notification: true
-#          slack_channel_name: << pipeline.parameters.releases-slack-channel >>
-#          context:
-#            - hmpps-common-vars
-#            - hmpps-interventions-onboarding-prod
-#          requires:
-#            - request-prod-approval
+      - hmpps/deploy_env:
+          name: deploy_preprod
+          env: "preprod"
+          slack_notification: true
+          slack_channel_name: << pipeline.parameters.dev-releases-slack-channel >>
+          context:
+            - hmpps-common-vars
+            - hmpps-interventions-preprod-deploy
+          requires:
+            - deploy_dev
+      - request-prod-approval:
+          type: approval
+          requires:
+            - deploy_preprod
+      - hmpps/deploy_env:
+          name: deploy_prod
+          env: "prod"
+          slack_notification: true
+          slack_channel_name: << pipeline.parameters.releases-slack-channel >>
+          context:
+            - hmpps-common-vars
+            - hmpps-interventions-prod-deploy
+          requires:
+            - request-prod-approval
 
   security:
     triggers:
@@ -98,15 +96,15 @@ workflows:
                 - main
     jobs:
       - hmpps/gradle_owasp_dependency_check:
-          slack_channel: << pipeline.parameters.alerts-slack-channel >>
+          slack_channel: << pipeline.parameters.dev-alerts-slack-channel >>
           context:
             - hmpps-common-vars
       - hmpps/trivy_latest_scan:
-          slack_channel: << pipeline.parameters.alerts-slack-channel >>
+          slack_channel: << pipeline.parameters.dev-alerts-slack-channel >>
           context:
             - hmpps-common-vars
       - hmpps/veracode_pipeline_scan:
-          slack_channel: << pipeline.parameters.alerts-slack-channel >>
+          slack_channel: << pipeline.parameters.dev-alerts-slack-channel >>
           context:
             - veracode-credentials
             - hmpps-common-vars
@@ -120,9 +118,7 @@ workflows:
                 - main
     jobs:
       - hmpps/veracode_policy_scan:
-          slack_channel: << pipeline.parameters.alerts-slack-channel >>
+          slack_channel: << pipeline.parameters.dev-alerts-slack-channel >>
           context:
             - veracode-credentials
             - hmpps-common-vars
-
-
