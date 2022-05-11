@@ -1,11 +1,24 @@
 FROM openjdk:17-slim AS builder
 
+WORKDIR /app
+
+# download most dependencies
+# exclude generateGitProperties -- .git folder is not copied to allow caching
+COPY build.gradle.kts settings.gradle.kts gradlew ./
+COPY gradle/ gradle/
+RUN ./gradlew classes --exclude-task=generateGitProperties
+
+# compile main app
+# exclude generateGitProperties -- .git folder is not copied to allow caching
+COPY src/main/ src/main/
+RUN ./gradlew classes --exclude-task=generateGitProperties
+
+# assemble extracts information from .git and BUILD_NUMBER env var, these layers change for all commits
 ARG BUILD_NUMBER
 ENV BUILD_NUMBER ${BUILD_NUMBER:-1_0_0}
+COPY . .
+RUN ./gradlew assemble
 
-WORKDIR /app
-ADD . .
-RUN ./gradlew assemble -Dorg.gradle.daemon=false
 
 FROM openjdk:17-slim
 LABEL maintainer="HMPPS Digital Studio <info@digital.justice.gov.uk>"
