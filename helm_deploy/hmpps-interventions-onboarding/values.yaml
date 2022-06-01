@@ -2,7 +2,7 @@
 generic-service:
   nameOverride: hmpps-interventions-onboarding
 
-  replicaCount: 4
+  replicaCount: 1
 
   image:
     repository: quay.io/hmpps/hmpps-interventions-onboarding
