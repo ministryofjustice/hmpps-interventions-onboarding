@@ -15,6 +15,9 @@ generic-service:
     tlsSecretName: hmpps-interventions-onboarding-cert
     contextColour: green
 
+  poddisruptionbudget:
+    enabled: false
+
   # Environment variables to load into the deployment
   env:
     JAVA_OPTS: "-Xmx512m"
