@@ -3,7 +3,7 @@
 
 generic-service:
   ingress:
-    host: hmpps-interventions-onboarding-preprod.hmpps.service.justice.gov.uk
+    host: hmpps-interventions-onboarding-preprod.apps.live.cloud-platform.service.justice.gov.uk
 
   env:
     APPLICATIONINSIGHTS_CONFIGURATION_FILE: applicationinsights.dev.json
