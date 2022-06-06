@@ -32,6 +32,11 @@ generic-service:
   #     [name of environment variable as seen by app]: [key of kubernetes secret to load]
 
   namespace_secrets:
+    onboarding-postgres:
+      POSTGRES_URI: rds_instance_endpoint
+      POSTGRES_DB: database_name
+      POSTGRES_USERNAME: database_username
+      POSTGRES_PASSWORD: database_password
     hmpps-interventions-onboarding:
       APPINSIGHTS_INSTRUMENTATIONKEY: "APPINSIGHTS_INSTRUMENTATIONKEY"
 
