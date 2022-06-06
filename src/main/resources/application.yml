@@ -8,6 +8,11 @@ spring:
   codec:
     max-in-memory-size: 10MB
 
+  datasource:
+    url: jdbc:postgresql://${postgres.uri}/${postgres.db}
+    username: ${postgres.username}
+    password: ${postgres.password}
+
   jackson:
     date-format: "yyyy-MM-dd HH:mm:ss"
     serialization:

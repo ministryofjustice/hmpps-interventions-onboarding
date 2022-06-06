@@ -1,6 +1,12 @@
 server:
   shutdown: immediate
 
+postgres:
+  uri: localhost:5432
+  db: onboarding_test
+  username: postgres
+  password: password
+
 management.endpoint:
   health.cache.time-to-live: 0
   info.cache.time-to-live: 0

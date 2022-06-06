@@ -9,6 +9,14 @@ configurations {
 
 dependencies {
   implementation("org.springframework.boot:spring-boot-starter-webflux")
+  implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+  implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+  runtimeOnly("org.postgresql:postgresql")
+  runtimeOnly("org.flywaydb:flyway-core")
+
+  // rendering
+  implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0")
 }
 
 java {

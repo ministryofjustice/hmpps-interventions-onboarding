@@ -1,0 +1,5 @@
+postgres:
+  uri: localhost:5432
+  db: onboarding_dev
+  username: postgres
+  password: password
