@@ -17,8 +17,12 @@ parameters:
 jobs:
   validate:
     executor:
-      name: hmpps/java
-      tag: "17.0"
+      name: hmpps/java_postgres
+      jdk_tag: "17.0"
+      postgres_tag: "14-alpine"
+      postgres_username: postgres
+      postgres_password: password
+      postgres_db: onboarding_test
     steps:
       - checkout
       - restore_cache:
