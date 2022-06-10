@@ -1,5 +1,6 @@
 package uk.gov.justice.digital.hmpps.hmppsinterventionsonboarding.models
 
+import java.time.OffsetDateTime
 import java.util.UUID
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -12,7 +13,7 @@ import javax.persistence.Table
 @Table(name = "providers")
 data class Provider(
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   val id: UUID = UUID.fromString("00000000-0000-0000-0000-000000000000"),
 
   @Column
@@ -20,4 +21,10 @@ data class Provider(
 
   @Column
   val name: String = "",
+
+  @Column
+  val createdAt: OffsetDateTime = OffsetDateTime.now(),
+
+  @Column
+  val updatedAt: OffsetDateTime = OffsetDateTime.now(),
 )
