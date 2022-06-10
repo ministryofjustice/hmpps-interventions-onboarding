@@ -12,13 +12,11 @@
     <table class="govuk-table">
         <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="col" aria-sort="none">Authentication group ID</th>
             <th class="govuk-table__header" scope="col" aria-sort="ascending">Name</th>
         </tr>
         </thead>
         <tbody class="govuk-table__body">
         <tr th:each="provider : ${providers}" class="govuk-table__row" th:attr="data-qa=${provider.id}">
-            <td th:text="${provider.authGroupId}" class="govuk-table__cell" data-test="authId"></td>
             <td th:text="${provider.name}" class="govuk-table__cell" data-test="name"></td>
         </tr>
         </tbody>
