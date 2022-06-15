@@ -12,7 +12,7 @@ import uk.gov.justice.digital.hmpps.hmppsinterventionsonboarding.repositories.Pr
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("test")
-class ProvidersTest @Autowired constructor(val repository: ProviderRepository) {
+class ProvidersTest @Autowired constructor(private val repository: ProviderRepository) {
   val providers: Providers = Providers(repository)
 
   @Test
