@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/layout}">
+<head>
+    <title>Commissioned Rehabilitative Services (CRS) contracts</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<div layout:fragment="content" class="govuk-grid-column-full">
+    <h1 class="govuk-heading-l">Contract list</h1>
+    <table class="govuk-table">
+        <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col" aria-sort="ascending">Reference</th>
+            <th class="govuk-table__header" scope="col" aria-sort="ascending">Contact at MoJ</th>
+            <th class="govuk-table__header" scope="col" aria-sort="ascending">Contract start date</th>
+            <th class="govuk-table__header" scope="col" aria-sort="ascending">Contract end date</th>
+            <th class="govuk-table__header" scope="col" aria-sort="ascending">Ready for onboarding?</th>
+        </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+        <tr th:each="contract : ${contracts}" class="govuk-table__row" th:attr="data-qa=${contract.id}">
+            <td th:text="${contract.reference}" class="govuk-table__cell" data-test="reference"></td>
+            <td th:text="${contract.contactAtMojEmail}" class="govuk-table__cell" data-test="contact-at-moj-email"></td>
+            <td th:text="${contract.startDate}" class="govuk-table__cell" data-test="start-date"></td>
+            <td th:text="${contract.endDate}" class="govuk-table__cell" data-test="end-date"></td>
+            <td class="govuk-table__cell" data-test="ready-to-onboard">
+              <strong class="govuk-tag govuk-tag--yellow">incomplete</strong>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
