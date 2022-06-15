@@ -28,6 +28,13 @@
 <th:block th:replace="fragments/header :: header"/>
 
 <div class="govuk-width-container">
+    <div class="govuk-phase-banner">
+      <p class="govuk-phase-banner__content">
+        <strong class="govuk-tag govuk-phase-banner__content__tag">prototype</strong>
+        <span class="govuk-phase-banner__text">This is a prototype for a new service. Please visit the <code>#interventions</code> channel on Slack to feedback.</span>
+      </p>
+    </div>
+
     <a th:if="${showBack}" th:href="${!#strings.isEmpty(returnTo)} ? @{${returnTo}} : @{/}" class="govuk-back-link"
        id="back-link" data-qa="back-link">Back</a>
     <main class="govuk-main-wrapper" id="main-content" role="main">
