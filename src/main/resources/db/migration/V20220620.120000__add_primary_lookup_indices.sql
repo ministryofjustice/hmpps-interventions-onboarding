@@ -1,0 +1,3 @@
+CREATE INDEX ix_service_categories_by_contract_type ON crs_contract_type_service_categories (crs_contract_type_id);
+CREATE INDEX ix_outcomes_by_service_category ON desired_outcomes (service_category_id);
+CREATE INDEX ix_complexities_by_service_category ON complexity_levels (service_category_id);
