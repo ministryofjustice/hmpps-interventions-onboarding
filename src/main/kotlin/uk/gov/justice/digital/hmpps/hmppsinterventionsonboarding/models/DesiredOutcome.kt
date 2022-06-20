@@ -7,7 +7,6 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.ManyToOne
 import javax.persistence.Table
 
 @Entity
@@ -15,7 +14,6 @@ import javax.persistence.Table
 data class DesiredOutcome(
   @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: UUID = UUID.fromString("00000000-0000-0000-0000-000000000000"),
 
-  @ManyToOne val serviceCategory: ServiceCategory? = null,
   @Column val description: String = "",
 
   @Column val createdAt: OffsetDateTime = OffsetDateTime.now(),

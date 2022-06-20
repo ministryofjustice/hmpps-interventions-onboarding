@@ -9,7 +9,6 @@ import javax.persistence.Enumerated
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.ManyToOne
 import javax.persistence.Table
 
 enum class Complexity {
@@ -21,7 +20,6 @@ enum class Complexity {
 data class ComplexityLevel(
   @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: UUID = UUID.fromString("00000000-0000-0000-0000-000000000000"),
 
-  @ManyToOne val serviceCategory: ServiceCategory? = null,
   @Column @Enumerated(EnumType.STRING) val complexity: Complexity = Complexity.LOW,
   @Column val description: String = "",
 
