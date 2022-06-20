@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.test.context.ActiveProfiles
 import uk.gov.justice.digital.hmpps.hmppsinterventionsonboarding.models.Complexity
 import uk.gov.justice.digital.hmpps.hmppsinterventionsonboarding.repositories.ServiceCategoryRepository
+import java.util.UUID
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -49,5 +50,15 @@ class ScopeTest @Autowired constructor(private val repository: ServiceCategoryRe
       "Service user at risk of losing their tenancy are successfully helped to retain it.",
       "Intervention ends before the Service user has sustained accommodation for three months, but s/he has a strong prospect of sustaining it for at least three months (including for those serving custodial sentences of less than 6 months).",
     )
+  }
+
+  @Test
+  fun `allSelectableServiceCategories() excludes non-CRS categories`() {
+    val result = scope.allSelectableServiceCategories()
+    val familyCategoryForManchester =
+      repository.findById(UUID.fromString("9232541b-6b1c-455d-8153-ab2784bf4593")).orElseThrow()
+
+    Assertions.assertThat(result).isNotEmpty
+    Assertions.assertThat(result).doesNotContain(familyCategoryForManchester)
   }
 }

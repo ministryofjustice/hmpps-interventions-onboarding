@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.JoinColumn
+import javax.persistence.JoinTable
 import javax.persistence.OneToMany
 import javax.persistence.Table
 
@@ -18,7 +19,12 @@ data class CRSContractType(
 
   @Column val code: String = "",
   @Column val name: String = "",
-  @OneToMany @JoinColumn(name = "crs_contract_type_id") val serviceCategories: Collection<ServiceCategory> = listOf(),
+
+  @OneToMany @JoinTable(
+    name = "crs_contract_type_service_categories",
+    joinColumns = [JoinColumn(name = "crs_contract_type_id")],
+    inverseJoinColumns = [JoinColumn(name = "service_category_id")],
+  ) val serviceCategories: Collection<ServiceCategory> = listOf(),
 
   @Column val createdAt: OffsetDateTime = OffsetDateTime.now(),
   @Column val updatedAt: OffsetDateTime? = OffsetDateTime.now(),

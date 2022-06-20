@@ -17,7 +17,11 @@
         </h2>
         <ul class="moj-task-list__items">
           <li class="moj-task-list__item">
-              <span class="moj-task-list__task-name">Service categories</span>
+              <span class="moj-task-list__task-name">
+                <a class="govuk-link" th:href="@{/contract/{ref}/categories(ref=${contract.reference})}" aria-describedby="service-categories-status">
+                  Select service categories
+                </a>
+              </span>
               <strong class="govuk-tag govuk-tag--grey moj-task-list__tag" id="service-categories-status">Coming soon</strong>
           </li>
           <li class="moj-task-list__item">

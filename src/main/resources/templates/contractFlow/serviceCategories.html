@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/layout}">
+<head>
+    <title th:text="${contract.reference} + ' contract details'"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<div layout:fragment="content" class="govuk-grid-column-full">
+    <form th:action="@{/contract/{ref}/select-categories(ref=${contract.reference})}" method="post" novalidate="">
+    <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="service-categories-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">Which service categories are included in the <th:block th:text="${contract.reference}"></th:block> contract?</h1>
+            </legend>
+            <div id="service-categories-hint" class="govuk-hint">
+                Select all that apply.
+            </div>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                <div th:each="serviceCategory : ${serviceCategories}" class="govuk-checkboxes__item" th:attr="data-qa=${serviceCategory.id}">
+                    <input class="govuk-checkboxes__input" th:id="${serviceCategory.id}" name="selectedCategoryId[]" type="checkbox" th:checked="${selectedCategories.contains(serviceCategory)}" th:value="${serviceCategory.id}"/>
+                    <label th:text="${serviceCategory.name}" class="govuk-label govuk-checkboxes__label" th:attr="for=${serviceCategory.id}"/>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <button disabled="disabled" aria-disabled="true" class="govuk-button govuk-button--disabled" data-module="govuk-button">
+      Save and continue (coming soon)
+    </button>
+    </form>
+</div>
+
+</body>
+</html>

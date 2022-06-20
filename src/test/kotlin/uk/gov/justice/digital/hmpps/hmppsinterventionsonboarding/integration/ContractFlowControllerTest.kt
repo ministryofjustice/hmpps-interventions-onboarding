@@ -48,6 +48,16 @@ class ContractFlowControllerTest @Autowired constructor(
   }
 
   @Test
+  fun `contract's service category stage loads`() {
+    webTestClient.get()
+      .uri("/contract/XYZ001/categories")
+      .exchange()
+      .expectStatus().isOk
+      .expectBody()
+      .xpath("//h1").isEqualTo("Which service categories are included in the XYZ001 contract?")
+  }
+
+  @Test
   fun `individual contract page returns 404 Not Found with non-existing reference`() {
     webTestClient.get()
       .uri("/contract/DOES_NOT_EXIST")
