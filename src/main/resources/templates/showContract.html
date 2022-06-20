@@ -7,8 +7,62 @@
 </head>
 <body>
 
-<div layout:fragment="content" class="govuk-grid-column-full">
+<div layout:fragment="content" class="govuk-grid-column-two-thirds">
     <h1 th:text="${contract.reference} + ' contract details'" class="govuk-heading-l"></h1>
+
+    <ol class="moj-task-list">
+      <li>
+        <h2 class="moj-task-list__section">
+          <span class="moj-task-list__section-number">1. </span> Contract scope
+        </h2>
+        <ul class="moj-task-list__items">
+          <li class="moj-task-list__item">
+              <span class="moj-task-list__task-name">Service categories</span>
+              <strong class="govuk-tag govuk-tag--grey moj-task-list__tag" id="service-categories-status">Coming soon</strong>
+          </li>
+          <li class="moj-task-list__item">
+              <span class="moj-task-list__task-name">Desired outcomes</span>
+              <strong class="govuk-tag govuk-tag--grey moj-task-list__tag" id="desired-outcomes-status">Coming soon</strong>
+          </li>
+          <li class="moj-task-list__item">
+            <span class="moj-task-list__task-name">Eligibility</span>
+            <strong class="govuk-tag govuk-tag--grey moj-task-list__tag" id="eligibility-status">Coming soon</strong>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <h2 class="moj-task-list__section">
+          <span class="moj-task-list__section-number">2. </span> Supplier information
+        </h2>
+        <ul class="moj-task-list__items">
+          <li class="moj-task-list__item">
+              <span class="moj-task-list__task-name">Prime provider</span>
+              <strong class="govuk-tag govuk-tag--grey moj-task-list__tag" id="prime-provider-status">Coming soon</strong>
+          </li>
+          <li class="moj-task-list__item">
+            <span class="moj-task-list__task-name">Contact details</span>
+            <strong class="govuk-tag govuk-tag--grey moj-task-list__tag" id="provider-contact-status">Coming soon</strong>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <h2 class="moj-task-list__section">
+          <span class="moj-task-list__section-number">3. </span> Service description
+        </h2>
+        <ul class="moj-task-list__items">
+          <li class="moj-task-list__item">
+            <span class="moj-task-list__task-name">What probation officers see</span>
+            <strong class="govuk-tag govuk-tag--grey moj-task-list__tag" id="intervention-description-status">Coming soon</strong>
+          </li>
+          <li class="moj-task-list__item">
+            <span class="moj-task-list__task-name">Activities</span>
+            <strong class="govuk-tag govuk-tag--grey moj-task-list__tag" id="intervention-activities-status">Coming soon</strong>
+          </li>
+        </ul>
+      </li>
+    </ol>
 </div>
 
 </body>
