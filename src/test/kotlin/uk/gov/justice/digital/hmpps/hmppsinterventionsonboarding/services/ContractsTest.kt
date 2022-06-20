@@ -18,6 +18,7 @@ class ContractsTest @Autowired constructor(
   private val repository: CRSContractRepository,
   private val typeRepository: CRSContractTypeRepository,
 ) {
+  val fixedManchesterWomensServicesId: UUID = UUID.fromString("d2be0730-39b4-4988-a8d2-e17ea63bd72b")
   val contracts: Contracts = Contracts(repository)
 
   @Test
@@ -31,15 +32,6 @@ class ContractsTest @Autowired constructor(
   }
 
   @Test
-  fun `allCRS() loads the contract type of the contract`() {
-    val type = typeRepository.findById(UUID.fromString("f9b59d2c-c60b-4eb0-8469-04c975d2e2ee")).orElseThrow()
-    CRSContract(reference = "A", type = type).let { repository.save(it) }
-
-    val result = contracts.allCRS()
-    Assertions.assertThat(result.first().type).isEqualTo(type)
-  }
-
-  @Test
   fun `findByReference() returns contract type by its reference number`() {
     val contract = CRSContract(reference = "A").let { repository.save(it) }
 
@@ -49,7 +41,7 @@ class ContractsTest @Autowired constructor(
 
   @Test
   fun `contract associations can be loaded`() {
-    val type = typeRepository.findById(UUID.fromString("f9b59d2c-c60b-4eb0-8469-04c975d2e2ee")).orElseThrow()
+    val type = typeRepository.findById(fixedManchesterWomensServicesId).orElseThrow()
     val contract = CRSContract(reference = "A", type = type).let { repository.save(it) }
 
     Assertions.assertThat(contract.type).isEqualTo(type)
@@ -57,8 +49,9 @@ class ContractsTest @Autowired constructor(
 
   @Test
   fun `contract type associations can be queried`() {
-    val type = typeRepository.findById(UUID.fromString("f9b59d2c-c60b-4eb0-8469-04c975d2e2ee")).orElseThrow()
+    val type = typeRepository.findById(fixedManchesterWomensServicesId).orElseThrow()
 
     Assertions.assertThat(type.serviceCategories).isNotEmpty
+    Assertions.assertThat(type.extraDesiredOutcomes).isNotEmpty
   }
 }

@@ -26,6 +26,8 @@ data class CRSContractType(
     inverseJoinColumns = [JoinColumn(name = "service_category_id")],
   ) val serviceCategories: Collection<ServiceCategory> = listOf(),
 
+  @OneToMany @JoinColumn(name = "crs_contract_type_id") val extraDesiredOutcomes: Collection<ExtraDesiredOutcome> = listOf(),
+
   @Column val createdAt: OffsetDateTime = OffsetDateTime.now(),
   @Column val updatedAt: OffsetDateTime? = OffsetDateTime.now(),
 )
