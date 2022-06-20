@@ -7,4 +7,5 @@ import java.util.UUID
 
 interface CRSContractRepository : CrudRepository<CRSContract, UUID> {
   fun findAll(sort: Sort): Iterable<CRSContract>
+  fun findByReference(reference: String): CRSContract?
 }

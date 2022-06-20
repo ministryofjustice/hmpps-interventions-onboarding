@@ -38,4 +38,12 @@ class ContractsTest @Autowired constructor(
     val result = contracts.allCRS()
     Assertions.assertThat(result.first().type).isEqualTo(type)
   }
+
+  @Test
+  fun `findByReference() returns contract type by its reference number`() {
+    val contract = CRSContract(reference = "A").let { repository.save(it) }
+
+    Assertions.assertThat(contracts.findByReference("A")).isEqualTo(contract)
+    Assertions.assertThat(contracts.findByReference("B")).isNull()
+  }
 }

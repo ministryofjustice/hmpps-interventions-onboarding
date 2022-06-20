@@ -21,7 +21,9 @@
         </thead>
         <tbody class="govuk-table__body">
         <tr th:each="contract : ${contracts}" class="govuk-table__row" th:attr="data-qa=${contract.id}">
-            <td th:text="${contract.reference}" class="govuk-table__cell" data-test="reference"></td>
+            <td class="govuk-table__cell" data-test="reference">
+              <a class="govuk-link" th:href="@{/contract/{ref}(ref=${contract.reference})}" th:text="${contract.reference}"></a>
+            </td>
             <td th:text="${contract.contactAtMojEmail}" class="govuk-table__cell" data-test="contact-at-moj-email"></td>
             <td th:text="${contract.type?.name}" class="govuk-table__cell" data-test="contract-type"></td>
             <td th:text="${contract.startDate}" class="govuk-table__cell" data-test="start-date"></td>

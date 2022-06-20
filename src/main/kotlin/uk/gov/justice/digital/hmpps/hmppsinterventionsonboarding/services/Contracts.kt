@@ -8,6 +8,10 @@ import uk.gov.justice.digital.hmpps.hmppsinterventionsonboarding.repositories.CR
 
 @Service
 class Contracts(@Autowired val repository: CRSContractRepository) {
+  fun findByReference(reference: String): CRSContract? {
+    return repository.findByReference(reference)
+  }
+
   fun allCRS(): Iterable<CRSContract> {
     return repository.findAll(Sort.by("reference"))
   }

@@ -50,6 +50,24 @@ class PageControllerTest @Autowired constructor(
       .exchange()
       .expectStatus().isOk
       .expectBody()
-      .xpath("//td[@data-test='reference']").isEqualTo("XYZ001")
+      .xpath("//td[@data-test='reference']/a").isEqualTo("XYZ001")
+  }
+
+  @Test
+  fun `individual contract page loads`() {
+    webTestClient.get()
+      .uri("/contract/XYZ001")
+      .exchange()
+      .expectStatus().isOk
+      .expectBody()
+      .xpath("//h1").isEqualTo("XYZ001 contract details")
+  }
+
+  @Test
+  fun `individual contract page returns 404 Not Found with non-existing reference`() {
+    webTestClient.get()
+      .uri("/contract/DOES_NOT_EXIST")
+      .exchange()
+      .expectStatus().isNotFound
   }
 }

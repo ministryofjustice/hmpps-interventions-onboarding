@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/layout}">
+<head>
+    <title th:text="${contract.reference} + ' contract details'"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<div layout:fragment="content" class="govuk-grid-column-full">
+    <h1 th:text="${contract.reference} + ' contract details'" class="govuk-heading-l"></h1>
+</div>
+
+</body>
+</html>
