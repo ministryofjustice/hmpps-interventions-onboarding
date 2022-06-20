@@ -25,4 +25,6 @@ data class CRSContract(
 
   @Column val createdAt: OffsetDateTime = OffsetDateTime.now(),
   @Column val updatedAt: OffsetDateTime? = OffsetDateTime.now(),
-)
+) {
+  fun readyToOnboard(): Boolean = false
+}

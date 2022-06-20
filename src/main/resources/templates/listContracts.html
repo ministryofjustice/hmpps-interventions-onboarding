@@ -26,7 +26,10 @@
             <td th:text="${contract.type?.name}" class="govuk-table__cell" data-test="contract-type"></td>
             <td th:text="${contract.startDate}" class="govuk-table__cell" data-test="start-date"></td>
             <td class="govuk-table__cell" data-test="ready-to-onboard">
-              <strong class="govuk-tag govuk-tag--yellow">incomplete</strong>
+              <div th:switch="${contract.readyToOnboard()}">
+                <strong th:case="false" class="govuk-tag govuk-tag--yellow">incomplete</strong>
+                <strong th:case="true" class="govuk-tag govuk-tag--green">ready</strong>
+              </div>
             </td>
         </tr>
         </tbody>
