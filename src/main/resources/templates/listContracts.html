@@ -13,7 +13,6 @@
         <thead class="govuk-table__head">
         <tr class="govuk-table__row">
             <th class="govuk-table__header" scope="col" aria-sort="ascending">Reference</th>
-            <th class="govuk-table__header" scope="col" aria-sort="ascending">Contact at MoJ</th>
             <th class="govuk-table__header" scope="col" aria-sort="ascending">Contract type</th>
             <th class="govuk-table__header" scope="col" aria-sort="ascending">Contract start date</th>
             <th class="govuk-table__header" scope="col" aria-sort="ascending">Ready for onboarding?</th>
@@ -24,7 +23,6 @@
             <td class="govuk-table__cell" data-test="reference">
               <a class="govuk-link" th:href="@{/contract/{ref}(ref=${contract.reference})}" th:text="${contract.reference}"></a>
             </td>
-            <td th:text="${contract.contactAtMojEmail}" class="govuk-table__cell" data-test="contact-at-moj-email"></td>
             <td th:text="${contract.type?.name}" class="govuk-table__cell" data-test="contract-type"></td>
             <td th:text="${contract.startDate}" class="govuk-table__cell" data-test="start-date"></td>
             <td class="govuk-table__cell" data-test="ready-to-onboard">
