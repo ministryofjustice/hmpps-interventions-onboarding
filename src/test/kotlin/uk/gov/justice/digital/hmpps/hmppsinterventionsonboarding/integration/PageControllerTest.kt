@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired
 import uk.gov.justice.digital.hmpps.hmppsinterventionsonboarding.models.CRSContract
 import uk.gov.justice.digital.hmpps.hmppsinterventionsonboarding.models.Provider
 import uk.gov.justice.digital.hmpps.hmppsinterventionsonboarding.repositories.CRSContractRepository
+import uk.gov.justice.digital.hmpps.hmppsinterventionsonboarding.repositories.CRSContractTypeRepository
 import uk.gov.justice.digital.hmpps.hmppsinterventionsonboarding.repositories.ProviderRepository
+import java.util.UUID
 
 class PageControllerTest @Autowired constructor(
   private val crsContractRepository: CRSContractRepository,
+  private val crsContractTypeRepository: CRSContractTypeRepository,
   private val providerRepository: ProviderRepository
 ) : IntegrationTestBase() {
   private lateinit var testContract: CRSContract
@@ -19,7 +22,8 @@ class PageControllerTest @Autowired constructor(
   @BeforeEach
   fun setup() {
     // cannot setup as @Transactional as then the web request would not see the value
-    testContract = crsContractRepository.save(CRSContract(reference = "XYZ001"))
+    val pwb = crsContractTypeRepository.findById(UUID.fromString("f9b59d2c-c60b-4eb0-8469-04c975d2e2ee")).orElseThrow()
+    testContract = crsContractRepository.save(CRSContract(reference = "XYZ001", type = pwb))
     testProvider = providerRepository.save(Provider(authGroupId = "SP001", name = "Demo Provider"))
   }
 

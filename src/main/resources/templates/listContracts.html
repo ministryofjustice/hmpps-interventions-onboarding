@@ -14,8 +14,8 @@
         <tr class="govuk-table__row">
             <th class="govuk-table__header" scope="col" aria-sort="ascending">Reference</th>
             <th class="govuk-table__header" scope="col" aria-sort="ascending">Contact at MoJ</th>
+            <th class="govuk-table__header" scope="col" aria-sort="ascending">Contract type</th>
             <th class="govuk-table__header" scope="col" aria-sort="ascending">Contract start date</th>
-            <th class="govuk-table__header" scope="col" aria-sort="ascending">Contract end date</th>
             <th class="govuk-table__header" scope="col" aria-sort="ascending">Ready for onboarding?</th>
         </tr>
         </thead>
@@ -23,8 +23,8 @@
         <tr th:each="contract : ${contracts}" class="govuk-table__row" th:attr="data-qa=${contract.id}">
             <td th:text="${contract.reference}" class="govuk-table__cell" data-test="reference"></td>
             <td th:text="${contract.contactAtMojEmail}" class="govuk-table__cell" data-test="contact-at-moj-email"></td>
+            <td th:text="${contract.type?.name}" class="govuk-table__cell" data-test="contract-type"></td>
             <td th:text="${contract.startDate}" class="govuk-table__cell" data-test="start-date"></td>
-            <td th:text="${contract.endDate}" class="govuk-table__cell" data-test="end-date"></td>
             <td class="govuk-table__cell" data-test="ready-to-onboard">
               <strong class="govuk-tag govuk-tag--yellow">incomplete</strong>
             </td>
