@@ -2,17 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/layout}">
 <head>
-    <title th:text="${contract.reference} + ' contract details'"></title>
+    <title th:text="${reference} + ' contract details'"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 
 <div layout:fragment="content" class="govuk-grid-column-full">
-    <form th:action="@{/contract/{ref}/select-categories(ref=${contract.reference})}" method="post" novalidate="">
+    <form th:action="@{/contract/{ref}/select-categories(ref=${reference})}" method="post" novalidate="">
     <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" aria-describedby="service-categories-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                <h1 class="govuk-fieldset__heading">Which service categories are included in the <th:block th:text="${contract.reference}"></th:block> contract?</h1>
+                <h1 class="govuk-fieldset__heading">Which service categories are included in the <th:block th:text="${reference}"></th:block> contract?</h1>
             </legend>
             <div id="service-categories-hint" class="govuk-hint">
                 Select all that apply.

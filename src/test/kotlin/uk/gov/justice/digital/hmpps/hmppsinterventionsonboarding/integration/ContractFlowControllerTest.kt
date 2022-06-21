@@ -58,6 +58,16 @@ class ContractFlowControllerTest @Autowired constructor(
   }
 
   @Test
+  fun `contract's check answers page loads`() {
+    webTestClient.get()
+      .uri("/contract/XYZ001/answers")
+      .exchange()
+      .expectStatus().isOk
+      .expectBody()
+      .xpath("//h1").isEqualTo("XYZ001 contract details")
+  }
+
+  @Test
   fun `individual contract page returns 404 Not Found with non-existing reference`() {
     webTestClient.get()
       .uri("/contract/DOES_NOT_EXIST")

@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/layout}">
+<head>
+    <title th:text="${reference} + ' contract details'"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<div layout:fragment="content" class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l"><th:block th:text="${reference}"/> contract details</h1>
+
+    <h2 class="govuk-heading-m">Scope</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Service categories
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <ul th:each="c : ${summary.serviceCategories}">
+            <li th:text="${c}"></li>
+          </ul>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" th:href="@{/contract/{ref}/categories(ref=${reference})}">
+            Change<span class="govuk-visually-hidden"> service categories</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
+</div>
+
+</body>
+</html>
