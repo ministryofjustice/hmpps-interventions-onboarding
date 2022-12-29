@@ -4,6 +4,6 @@ This was a prototype for building a service for contract management and interven
 
 The intent was to shift onboarding and offboarding from "build" to "configure".
 
+Archived on 2022-12-29.
 
-This project is now archived due to priorities.
 It may be revived later.
